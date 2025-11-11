@@ -4,11 +4,23 @@ Aplicação completa para analisar o match entre seu currículo e descrições d
 
 ## 📋 Funcionalidades
 
+### 🤖 Análise Inteligente com IA
+- **Matching Semântico**: Usa embeddings de IA para entender sinônimos e contexto
+- **Análise de Similaridade**: Detecta habilidades relacionadas (ex: "React" ≈ "React.js")
+- **Score Multidimensional**: Combina similaridade geral + cobertura de skills
+- **Detecção de Senioridade**: Identifica nível júnior/pleno/sênior automaticamente
+- **Recomendações Personalizadas**: Sugestões inteligentes baseadas no resultado
+
+### 📄 Processamento de Documentos
 - Upload de currículo (PDF ou DOCX)
 - Extração automática de habilidades usando NLP
-- Análise de match com descrições de vagas
-- Score percentual de compatibilidade
-- Identificação de habilidades em comum e faltantes
+- Análise de anos de experiência
+
+### 📊 Visualização
+- Score percentual de compatibilidade com confiança
+- Métricas detalhadas (similaridade geral, cobertura de skills)
+- Habilidades em comum com % de match individual
+- Habilidades faltantes priorizadas
 - Interface moderna e responsiva
 
 ## 🏗️ Arquitetura
@@ -38,17 +50,23 @@ python -m venv venv
 # Ativar ambiente virtual (Windows)
 venv\Scripts\activate
 
-# Instalar dependências
+# Instalar dependências (pode demorar alguns minutos)
 pip install -r requirements.txt
 
 # Baixar modelo spaCy em português
 python -m spacy download pt_core_news_lg
 
+# (OPCIONAL) Testar se a IA está funcionando
+python test_ai.py
+
 # Executar servidor
+# Na primeira execução, o modelo de IA será baixado automaticamente (~400MB)
 python app.py
 ```
 
 O backend estará em `http://localhost:5000`
+
+**⚠️ Primeira execução**: O download do modelo de IA pode levar alguns minutos dependendo da sua conexão.
 
 ### 2. Frontend
 
@@ -71,22 +89,35 @@ O frontend estará em `http://localhost:3000`
 3. **Cole a vaga**: Copie e cole a descrição completa da vaga desejada
 4. **Analise o resultado**: Veja o score de match e as habilidades em comum/faltantes
 
+## 📖 Documentação Adicional
+
+- **[⚡ Quick Start](QUICK_START.md)**: Instalação rápida em 5 minutos
+- **[🎯 Funcionalidades](FEATURES.md)**: Lista completa de recursos
+- **[🏗️ Arquitetura](ARCHITECTURE.md)**: Diagrama e fluxo de dados
+- **[🧠 Como Funciona a IA](api/AI_EXPLANATION.md)**: Explicação técnica detalhada
+- **[📚 Exemplos de Uso](EXAMPLES.md)**: Casos reais com resultados
+- **[🚀 Guia de Upgrade](UPGRADE_GUIDE.md)**: Comparação antes/depois da IA
+
 ## 🔧 Melhorias Futuras
 
-- [ ] Implementar Método B (comparação semântica com BERT/SBERT)
+- [x] ~~Implementar análise semântica com IA~~ ✅ **IMPLEMENTADO!**
 - [ ] Adicionar autenticação de usuários
 - [ ] Banco de dados para persistência
 - [ ] Histórico de análises
 - [ ] Exportar relatórios em PDF
-- [ ] Sugestões de cursos para habilidades faltantes
+- [ ] Integração com APIs de cursos (Udemy, Coursera)
 - [ ] Análise de soft skills
 - [ ] Integração com LinkedIn
+- [ ] Ranking de múltiplas vagas
+- [ ] Geração de carta de apresentação com GPT
 
 ## 📦 Tecnologias
 
 **Backend:**
 - Flask
-- spaCy
+- Sentence Transformers (IA para embeddings semânticos)
+- spaCy (NLP)
+- scikit-learn (similaridade por cosseno)
 - pdfplumber
 - python-docx
 

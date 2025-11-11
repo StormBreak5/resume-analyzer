@@ -6,6 +6,7 @@ from docx import Document
 import json
 import os
 from werkzeug.utils import secure_filename
+from ai_matcher import IntelligentMatcher
 
 app = Flask(__name__)
 CORS(app)
@@ -24,6 +25,11 @@ try:
 except:
     print("Modelo pt_core_news_lg não encontrado. Instale com: python -m spacy download pt_core_news_lg")
     nlp = None
+
+# Inicializar matcher inteligente
+print("Inicializando IA...")
+ai_matcher = IntelligentMatcher()
+print("IA pronta!")
 
 # Armazenamento simples em memória (em produção, use banco de dados)
 cv_data = {}
@@ -151,7 +157,7 @@ def upload_cv():
 
 @app.route('/analyze-job', methods=['POST'])
 def analyze_job():
-    """Endpoint para análise de vaga"""
+    """Endpoint para análise de vaga com IA"""
     data = request.get_json()
     
     if not data or 'job_description' not in data:
@@ -167,11 +173,31 @@ def analyze_job():
     # Extrair habilidades da vaga
     job_skills = extract_skills(job_description)
     cv_skills = cv_data[user_id]['skills']
+    cv_text = cv_data[user_id]['text']
     
-    # Calcular match
-    match_result = calculate_match(cv_skills, job_skills)
+    # Análise inteligente com IA
+    ai_result = ai_matcher.semantic_match(cv_text, job_description, cv_skills, job_skills)
     
-    return jsonify(match_result)
+    # Análise de nível de experiência
+    cv_level = ai_matcher.analyze_experience_level(cv_text)
+    job_level = ai_matcher.analyze_experience_level(job_description)
+    
+    # Gerar recomendações
+    recommendations = ai_matcher.generate_recommendations(
+        ai_result['missing_skills'], 
+        ai_result['score']
+    )
+    
+    # Combinar resultados
+    result = {
+        **ai_result,
+        'cv_level': cv_level,
+        'job_level': job_level,
+        'recommendations': recommendations,
+        'analysis_type': 'semantic_ai'
+    }
+    
+    return jsonify(result)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
