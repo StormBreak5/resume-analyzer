@@ -93,6 +93,9 @@ O frontend estará em `http://localhost:3000`
 
 - **[⚡ Quick Start](QUICK_START.md)**: Instalação rápida em 5 minutos
 - **[🎯 Funcionalidades](FEATURES.md)**: Lista completa de recursos
+- **[📸 Screenshots](SCREENSHOTS.md)**: Visualização da interface
+- **[🎨 Guia Visual](VISUAL_GUIDE.md)**: Tour pela interface moderna
+- **[🎨 Mudanças de Design](DESIGN_CHANGES.md)**: Detalhes do tema escuro
 - **[🏗️ Arquitetura](ARCHITECTURE.md)**: Diagrama e fluxo de dados
 - **[🧠 Como Funciona a IA](api/AI_EXPLANATION.md)**: Explicação técnica detalhada
 - **[📚 Exemplos de Uso](EXAMPLES.md)**: Casos reais com resultados
@@ -127,6 +130,7 @@ O frontend estará em `http://localhost:3000`
 - TypeScript
 - Tailwind CSS
 - Axios
+- React Hot Toast (notificações elegantes)
 
 ## 📝 Licença
 
