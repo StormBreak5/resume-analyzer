@@ -89,17 +89,6 @@ O frontend estará em `http://localhost:3000`
 3. **Cole a vaga**: Copie e cole a descrição completa da vaga desejada
 4. **Analise o resultado**: Veja o score de match e as habilidades em comum/faltantes
 
-## 📖 Documentação Adicional
-
-- **[⚡ Quick Start](QUICK_START.md)**: Instalação rápida em 5 minutos
-- **[🎯 Funcionalidades](FEATURES.md)**: Lista completa de recursos
-- **[📸 Screenshots](SCREENSHOTS.md)**: Visualização da interface
-- **[🎨 Guia Visual](VISUAL_GUIDE.md)**: Tour pela interface moderna
-- **[🎨 Mudanças de Design](DESIGN_CHANGES.md)**: Detalhes do tema escuro
-- **[🏗️ Arquitetura](ARCHITECTURE.md)**: Diagrama e fluxo de dados
-- **[🧠 Como Funciona a IA](api/AI_EXPLANATION.md)**: Explicação técnica detalhada
-- **[📚 Exemplos de Uso](EXAMPLES.md)**: Casos reais com resultados
-- **[🚀 Guia de Upgrade](UPGRADE_GUIDE.md)**: Comparação antes/depois da IA
 
 ## 🔧 Melhorias Futuras
 
